@@ -8,6 +8,10 @@ public class Hello {
     public static void main(String[] args) throws IOException {
         int state = login();
         if(state == 0) {
+            // 打印操作系统信息
+            String osName = System.getProperty("os.name");
+            String osArch = System.getProperty("os.arch");
+            System.out.println(osName+" : "+osArch);
             // 获取当前时间
             Date date = new Date(System.currentTimeMillis());
             // 打印当前时间
