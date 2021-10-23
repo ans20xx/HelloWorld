@@ -12,6 +12,9 @@ public class Hello {
             String osName = System.getProperty("os.name");
             String osArch = System.getProperty("os.arch");
             System.out.println(osName+" : "+osArch);
+            String userDir = System.getProperty("user.dir");
+            // 打印用户目录
+            System.out.println(userDir);
             // 获取当前时间
             Date date = new Date(System.currentTimeMillis());
             // 打印当前时间
@@ -43,7 +46,7 @@ public class Hello {
         String password = scanner.next();
         String correctUsername = properties.getProperty("username");
         String correctPassword = properties.getProperty("password");
-        if(username.equals(correctPassword) ) {
+        if(username.equals(correctUsername) ) {
             if(password.equals(correctPassword)) {
                 return 0;
             } else {
