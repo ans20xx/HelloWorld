@@ -14,7 +14,7 @@ public class Hello {
             // 打印 Hello world
             System.out.println("Hello World!");
         } else {
-            System.out.println("Deny....");
+            System.out.println("用户名或密码不合法");
         }
     }
 
