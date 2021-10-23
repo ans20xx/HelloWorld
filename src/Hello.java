@@ -6,19 +6,27 @@ import java.util.Scanner;
 
 public class Hello {
     public static void main(String[] args) throws IOException {
-        if(login()) {
+        int state = login();
+        if(state == 0) {
             // 获取当前时间
             Date date = new Date(System.currentTimeMillis());
             // 打印当前时间
             System.out.println(date);
             // 打印 Hello world
             System.out.println("Hello World!");
+        } else if(state == 1){
+            System.out.println("用户名错误");
         } else {
-            System.out.println("Deny....");
+            System.out.println("密码错误");
         }
     }
 
-    public static boolean login() throws IOException {
+    /**
+     * 验证用户名和密码
+     * @return 用户名错误返回 1, 密码错误返回 2, 匹配成功返回 0
+     * @throws IOException
+     */
+    public static int login() throws IOException {
         Properties properties = new Properties();
         URL resource = Hello.class.getClassLoader().getResource("user.properties");
         InputStream in = new FileInputStream(resource.getPath());
@@ -28,11 +36,17 @@ public class Hello {
         String username = scanner.next();
         System.out.print("password: ");
         String password = scanner.next();
-        if(username.equals(properties.getProperty("username")) &&
-            password.equals(properties.getProperty("password"))) {
-            return true;
+        String correctUsername = properties.getProperty("username");
+        String correctPassword = properties.getProperty("password");
+        if(username.equals(correctPassword) ) {
+            if(password.equals(correctPassword)) {
+                return 0;
+            } else {
+                return 2;
+            }
+        } else {
+            return 1;
         }
-        return false;
     }
 
 }
